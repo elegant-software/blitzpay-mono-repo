@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(d.get\\('name','?'\\), d.get\\('scripts',{}\\)\\)\")",
+      "Bash(git -C /Users/mehdi/MyProject/blitz-pay remote get-url origin)",
+      "Bash(git -C /Users/mehdi/MyProject/blitz-pay-prototype remote get-url origin)",
+      "Bash(git -C /Users/mehdi/MyProject/blitzpay-admin-dashboard remote get-url origin)",
+      "Bash(git init *)",
+      "Bash(git submodule *)",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(json.dumps\\(d.get\\('scripts',{}\\), indent=2\\)\\)\")",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(json.dumps\\({'scripts': d.get\\('scripts',{}\\), 'devDependencies': d.get\\('devDependencies',{}\\)}, indent=2\\)\\)\")",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(json.dumps\\(d.get\\('projects',{}\\).get\\('blitzpay-admin-dashboard',{}\\).get\\('architect',{}\\).get\\('test',{}\\), indent=2\\)\\)\")"
+    ]
+  }
+}

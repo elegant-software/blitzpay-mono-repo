@@ -1,0 +1,8 @@
+test_suite(
+    name = "contract_tests",
+    tests = [
+        "//contract-tests/admin-dashboard:contract_tests",
+        "//contract-tests/mobile-consumer:contract_tests",
+        "//contract-tests/mobile-merchant:contract_tests",
+    ],
+)

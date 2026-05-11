@@ -1,0 +1,58 @@
+name: Contract Tests
+
+on:
+  workflow_dispatch:
+    inputs:
+      stubs_version:
+        description: "blitz-pay stubs JAR version to test against"
+        required: true
+        type: string
+  push:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  contract-tests:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - name: Install Bazelisk
+        run: |
+          curl -fsSL https://github.com/bazelbuild/bazelisk/releases/latest/download/bazelisk-linux-amd64 \
+            -o /usr/local/bin/bazel && chmod +x /usr/local/bin/bazel
+
+      - name: Set stubs version in MODULE.bazel
+        if: ${{ inputs.stubs_version != '' }}
+        run: |
+          sed -i "s|com.elegant.software.blitzpay:blitz-pay:[^:]*:stubs|com.elegant.software.blitzpay:blitz-pay:${{ inputs.stubs_version }}:stubs|" MODULE.bazel
+
+      - name: Install Node (for consumer npm test:contract scripts)
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install consumer dependencies
+        run: |
+          npm ci --prefix blitzpay-admin-dashboard
+          npm ci --prefix blitz-pay-prototype/blitz-pay
+          npm ci --prefix blitz-pay-prototype/blitz-pay-merchant
+
+      - name: Run contract tests
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: bazel test --config=ci //:contract_tests

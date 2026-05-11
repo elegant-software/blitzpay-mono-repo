@@ -1,0 +1,26 @@
+module(
+    name = "blitzpay",
+    version = "0.1.0",
+)
+
+bazel_dep(name = "rules_java", version = "7.6.5")
+bazel_dep(name = "rules_jvm_external", version = "6.2")
+
+maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")
+
+maven.install(
+    artifacts = [
+        "com.github.tomakehurst:wiremock-standalone:3.0.1",
+        # Stubs JAR published by blitz-pay CI to GitHub Packages.
+        # Bump this version when blitz-pay cuts a new contract release.
+        "com.elegant.software.blitzpay:blitz-pay:0.2.2:stubs",
+    ],
+    repositories = [
+        "https://repo1.maven.org/maven2",
+        # GitHub Packages requires authentication.
+        # Credentials are supplied via GITHUB_TOKEN in CI (see .bazelrc).
+        "https://maven.pkg.github.com/elegant-software/blitz-pay",
+    ],
+)
+
+use_repo(maven, "maven")

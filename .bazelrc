@@ -1,0 +1,10 @@
+# Enable Bzlmod
+common --enable_bzlmod
+
+# GitHub Packages credentials for downloading the stubs JAR.
+# Set GITHUB_TOKEN in CI; locally use a personal access token with read:packages scope.
+common --repo_env=GITHUB_TOKEN
+
+# CI settings
+build:ci --announce_rc
+test:ci --test_output=errors

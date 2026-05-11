@@ -1,0 +1,17 @@
+load("//tools/contract_test:defs.bzl", "consumer_contract_test")
+
+consumer_contract_test(
+    name = "contract_tests",
+    stubs_jar = "@maven//:com_elegant_software_blitzpay_blitz_pay",
+    wiremock_port = "8090",
+    # Runs `npm run test:contract` inside the consumer mobile submodule.
+    # Add a test:contract script to blitz-pay-prototype/blitz-pay/package.json
+    # that points HTTP calls at CONTRACT_TEST_BASE_URL.
+    test_cmd = [
+        "npm",
+        "--prefix",
+        "blitz-pay-prototype/blitz-pay",
+        "run",
+        "test:contract",
+    ],
+)
