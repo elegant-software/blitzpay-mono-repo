@@ -26,6 +26,11 @@ jobs:
         with:
           submodules: recursive
 
+      - name: Update submodules to latest configured branches
+        run: |
+          git submodule sync --recursive
+          git submodule update --init --recursive --remote blitz-pay-prototype blitzpay-admin-dashboard
+
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
