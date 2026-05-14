@@ -31,6 +31,17 @@ jobs:
           git submodule sync --recursive
           git submodule update --init --recursive --remote blitz-pay-prototype blitzpay-admin-dashboard
 
+      - name: Debug updated submodules
+        run: |
+          echo "=== admin dashboard commit ==="
+          git -C blitzpay-admin-dashboard rev-parse HEAD
+          echo "=== admin dashboard tsconfig.contract.json ==="
+          cat blitzpay-admin-dashboard/tsconfig.contract.json
+          echo "=== admin dashboard angular contract config ==="
+          rg -n "contract-test|tsconfig.contract.json|contract\\.spec|contract-spec" blitzpay-admin-dashboard/angular.json
+          echo "=== mobile repo commit ==="
+          git -C blitz-pay-prototype rev-parse HEAD
+
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
