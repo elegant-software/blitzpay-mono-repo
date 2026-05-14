@@ -13,12 +13,12 @@ def consumer_contract_test(name, stubs_jar, test_cmd, wiremock_port = "8089", **
         name = name,
         srcs = ["//tools/contract_test:wiremock_runner.sh"],
         args = [
-            "$(location @maven//:com_github_tomakehurst_wiremock_standalone)",
+            "$(location @maven//:org_wiremock_wiremock_standalone)",
             "$(location %s)" % stubs_jar,
             wiremock_port,
         ] + test_cmd,
         data = [
-            "@maven//:com_github_tomakehurst_wiremock_standalone",
+            "@maven//:org_wiremock_wiremock_standalone",
             stubs_jar,
         ],
         **kwargs
