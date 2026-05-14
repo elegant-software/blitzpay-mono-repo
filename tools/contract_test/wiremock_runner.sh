@@ -1,12 +1,11 @@
 #!/usr/bin/env bash
-# Starts WireMock seeded with the stubs JAR, runs npm test:contract in the consumer dir, then stops.
+# Starts WireMock seeded with the stubs JAR, then runs the consumer test command passed as remaining args.
 set -euo pipefail
 
 WIREMOCK_JAR="$1"
 STUBS_JAR="$2"
 WIREMOCK_PORT="$3"
-CONSUMER_DIR="$4"  # absolute path to the consumer submodule
-shift 4
+shift 3
 
 STUBS_DIR="$(mktemp -d)"
 trap 'rm -rf "$STUBS_DIR"; kill "$WIREMOCK_PID" 2>/dev/null || true' EXIT
@@ -31,4 +30,4 @@ for i in $(seq 1 20); do
 done
 
 export CONTRACT_TEST_BASE_URL="http://localhost:$WIREMOCK_PORT"
-npm --prefix "$CONSUMER_DIR" run test:contract
+"$@"

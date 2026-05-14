@@ -162,7 +162,7 @@ CONTRACT_TEST_BASE_URL=http://localhost:8089 npm run test:contract
 The test should pass. With WireMock not running, it should fail with a connection error
 (which confirms it is hitting a real server, not a mock).
 
----
+---``
 
 ## Task 3 — blitz-pay-prototype: React Native consumer contract tests
 
