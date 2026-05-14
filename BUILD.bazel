@@ -3,8 +3,6 @@ filegroup(
     srcs = glob([
         "blitzpay-admin-dashboard/*",
         "blitzpay-admin-dashboard/**",
-    ], exclude = [
-        "blitzpay-admin-dashboard/node_modules/**",
     ]),
     visibility = ["//visibility:public"],
 )
@@ -14,8 +12,6 @@ filegroup(
     srcs = glob([
         "blitz-pay-prototype/blitz-pay/*",
         "blitz-pay-prototype/blitz-pay/**",
-    ], exclude = [
-        "blitz-pay-prototype/blitz-pay/node_modules/**",
     ]),
     visibility = ["//visibility:public"],
 )
@@ -25,8 +21,6 @@ filegroup(
     srcs = glob([
         "blitz-pay-prototype/blitz-pay-merchant/*",
         "blitz-pay-prototype/blitz-pay-merchant/**",
-    ], exclude = [
-        "blitz-pay-prototype/blitz-pay-merchant/node_modules/**",
     ]),
     visibility = ["//visibility:public"],
 )
