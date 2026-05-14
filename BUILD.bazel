@@ -6,6 +6,7 @@ filegroup(
     ], exclude = [
         "blitzpay-admin-dashboard/node_modules/**",
     ]),
+    visibility = ["//visibility:public"],
 )
 
 filegroup(
@@ -16,6 +17,7 @@ filegroup(
     ], exclude = [
         "blitz-pay-prototype/blitz-pay/node_modules/**",
     ]),
+    visibility = ["//visibility:public"],
 )
 
 filegroup(
@@ -26,6 +28,7 @@ filegroup(
     ], exclude = [
         "blitz-pay-prototype/blitz-pay-merchant/node_modules/**",
     ]),
+    visibility = ["//visibility:public"],
 )
 
 test_suite(
