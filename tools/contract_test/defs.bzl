@@ -7,7 +7,7 @@ def consumer_contract_test(name, stubs_jar, test_cmd, wiremock_port = "8089", **
 
     Args:
         name:         Bazel target name
-        stubs_jar:    Label of the stubs JAR file (downloaded from GitHub Packages)
+        stubs_jar:    Label of the stubs JAR file
         test_cmd:     Shell command to run the consumer tests (list of strings)
         wiremock_port: Port WireMock will listen on (default 8089)
     """
@@ -16,12 +16,12 @@ def consumer_contract_test(name, stubs_jar, test_cmd, wiremock_port = "8089", **
         srcs = ["//tools/contract_test:wiremock_runner.sh"],
         args = [
             "$(location %s)" % artifact("org.wiremock:wiremock-standalone"),
-            "$(location %s)" % artifact(stubs_jar),
+            "$(location %s)" % stubs_jar,
             wiremock_port,
         ] + test_cmd,
         data = [
             artifact("org.wiremock:wiremock-standalone"),
-            artifact(stubs_jar),
+            stubs_jar,
         ],
         **kwargs
     )

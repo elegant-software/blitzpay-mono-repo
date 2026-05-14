@@ -2,7 +2,7 @@ load("//tools/contract_test:defs.bzl", "consumer_contract_test")
 
 consumer_contract_test(
     name = "contract_tests",
-    stubs_jar = "com.elegant.software.blitzpay:blitz-pay:jar:stubs:0.2.2",
+    stubs_jar = "//contract-tests:artifacts/blitz-pay-stubs.jar",
     wiremock_port = "8090",
     # Runs `npm run test:contract` inside the consumer mobile submodule.
     # Add a test:contract script to blitz-pay-prototype/blitz-pay/package.json

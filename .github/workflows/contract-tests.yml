@@ -51,11 +51,13 @@ jobs:
           chmod +x "$HOME/.local/bin/bazel"
           echo "$HOME/.local/bin" >> "$GITHUB_PATH"
 
-      - name: Set stubs version in MODULE.bazel
-        if: ${{ inputs.stubs_version != '' }}
+      - name: Download stubs JAR
+        env:
+          STUBS_VERSION: ${{ inputs.stubs_version || '0.2.2' }}
         run: |
-          sed -i "s|com.elegant.software.blitzpay:blitz-pay:jar:stubs:[^\"]*|com.elegant.software.blitzpay:blitz-pay:jar:stubs:${{ inputs.stubs_version }}|g" MODULE.bazel
-          sed -i "s|com.elegant.software.blitzpay:blitz-pay:jar:stubs:[^\"]*|com.elegant.software.blitzpay:blitz-pay:jar:stubs:${{ inputs.stubs_version }}|g" contract-tests/*/BUILD.bazel
+          mkdir -p contract-tests/artifacts
+          curl -fsSL https://maven.pkg.github.com/elegant-software/blitz-pay/com/elegant/software/blitzpay/blitz-pay/${STUBS_VERSION}/blitz-pay-${STUBS_VERSION}-stubs.jar \
+            -o contract-tests/artifacts/blitz-pay-stubs.jar
 
       - name: Install Node (for consumer npm test:contract scripts)
         uses: actions/setup-node@v4
