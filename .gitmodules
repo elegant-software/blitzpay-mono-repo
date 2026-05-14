@@ -1,9 +1,12 @@
 [submodule "blitz-pay"]
 	path = blitz-pay
 	url = https://github.com/elegant-software/blitz-pay.git
+	branch = main
 [submodule "blitz-pay-prototype"]
 	path = blitz-pay-prototype
 	url = https://github.com/elegant-software/blitz-pay-react-native.git
+	branch = main
 [submodule "blitzpay-admin-dashboard"]
 	path = blitzpay-admin-dashboard
 	url = https://github.com/elegant-software/blitzpay-admin-dashboard.git
+	branch = main
