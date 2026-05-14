@@ -2,7 +2,7 @@ filegroup(
     name = "admin_dashboard_files",
     srcs = glob([
         "blitzpay-admin-dashboard/*",
-        "blitzpay-admin-dashboard/**",
+        "blitzpay-admin-dashboard/**/*",
     ]),
     visibility = ["//visibility:public"],
 )
@@ -11,7 +11,7 @@ filegroup(
     name = "mobile_consumer_files",
     srcs = glob([
         "blitz-pay-prototype/blitz-pay/*",
-        "blitz-pay-prototype/blitz-pay/**",
+        "blitz-pay-prototype/blitz-pay/**/*",
     ]),
     visibility = ["//visibility:public"],
 )
@@ -20,7 +20,7 @@ filegroup(
     name = "mobile_merchant_files",
     srcs = glob([
         "blitz-pay-prototype/blitz-pay-merchant/*",
-        "blitz-pay-prototype/blitz-pay-merchant/**",
+        "blitz-pay-prototype/blitz-pay-merchant/**/*",
     ]),
     visibility = ["//visibility:public"],
 )
