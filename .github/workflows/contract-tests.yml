@@ -54,7 +54,8 @@ jobs:
       - name: Set stubs version in MODULE.bazel
         if: ${{ inputs.stubs_version != '' }}
         run: |
-          sed -i "s|com.elegant.software.blitzpay:blitz-pay:[^:]*:stubs|com.elegant.software.blitzpay:blitz-pay:${{ inputs.stubs_version }}:stubs|" MODULE.bazel
+          sed -i "s|com.elegant.software.blitzpay:blitz-pay:jar:stubs:[^\"]*|com.elegant.software.blitzpay:blitz-pay:jar:stubs:${{ inputs.stubs_version }}|g" MODULE.bazel
+          sed -i "s|com.elegant.software.blitzpay:blitz-pay:jar:stubs:[^\"]*|com.elegant.software.blitzpay:blitz-pay:jar:stubs:${{ inputs.stubs_version }}|g" contract-tests/*/BUILD.bazel
 
       - name: Install Node (for consumer npm test:contract scripts)
         uses: actions/setup-node@v4
