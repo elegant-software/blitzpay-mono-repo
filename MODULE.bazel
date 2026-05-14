@@ -13,7 +13,7 @@ maven.install(
         "com.github.tomakehurst:wiremock-standalone:3.0.1",
         # Stubs JAR published by blitz-pay CI to GitHub Packages.
         # Bump this version when blitz-pay cuts a new contract release.
-        "com.elegant.software.blitzpay:blitz-pay:0.2.2:stubs",
+        "com.elegant.software.blitzpay:blitz-pay:jar:stubs:0.2.2",
     ],
     repositories = [
         "https://repo1.maven.org/maven2",
