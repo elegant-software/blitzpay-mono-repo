@@ -31,6 +31,18 @@ jobs:
           distribution: temurin
           java-version: "21"
 
+      - name: Configure GitHub Packages auth
+        env:
+          PACKAGES_USERNAME: ${{ secrets.GH_PACKAGES_USERNAME || github.actor }}
+          PACKAGES_TOKEN: ${{ secrets.MONO_REPO_DISPATCH_TOKEN }}
+        run: |
+          cat > "$HOME/.netrc" <<EOF
+          machine maven.pkg.github.com
+            login ${PACKAGES_USERNAME}
+            password ${PACKAGES_TOKEN}
+          EOF
+          chmod 600 "$HOME/.netrc"
+
       - name: Install Bazelisk
         run: |
           mkdir -p "$HOME/.local/bin"
@@ -56,6 +68,4 @@ jobs:
           npm ci --prefix blitz-pay-prototype/blitz-pay-merchant
 
       - name: Run contract tests
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: bazel test --config=ci //:contract_tests

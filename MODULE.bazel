@@ -18,9 +18,10 @@ maven.install(
     repositories = [
         "https://repo1.maven.org/maven2",
         # GitHub Packages requires authentication.
-        # Credentials are supplied via GITHUB_TOKEN in CI (see .bazelrc).
+        # Credentials are supplied via ~/.netrc in CI/local environments.
         "https://maven.pkg.github.com/elegant-software/blitz-pay",
     ],
+    use_credentials_from_home_netrc_file = True,
 )
 
 use_repo(maven, "maven")
