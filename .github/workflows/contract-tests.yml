@@ -38,7 +38,7 @@ jobs:
           echo "=== admin dashboard tsconfig.contract.json ==="
           cat blitzpay-admin-dashboard/tsconfig.contract.json
           echo "=== admin dashboard angular contract config ==="
-          rg -n "contract-test|tsconfig.contract.json|contract\\.spec|contract-spec" blitzpay-admin-dashboard/angular.json
+          grep -nE "contract-test|tsconfig.contract.json|contract\\.spec|contract-spec" blitzpay-admin-dashboard/angular.json || true
           echo "=== mobile repo commit ==="
           git -C blitz-pay-prototype rev-parse HEAD
 
