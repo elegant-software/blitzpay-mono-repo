@@ -1,3 +1,30 @@
+filegroup(
+    name = "admin_dashboard_files",
+    srcs = glob([
+        "blitzpay-admin-dashboard/**",
+    ], exclude = [
+        "blitzpay-admin-dashboard/node_modules/**",
+    ]),
+)
+
+filegroup(
+    name = "mobile_consumer_files",
+    srcs = glob([
+        "blitz-pay-prototype/blitz-pay/**",
+    ], exclude = [
+        "blitz-pay-prototype/blitz-pay/node_modules/**",
+    ]),
+)
+
+filegroup(
+    name = "mobile_merchant_files",
+    srcs = glob([
+        "blitz-pay-prototype/blitz-pay-merchant/**",
+    ], exclude = [
+        "blitz-pay-prototype/blitz-pay-merchant/node_modules/**",
+    ]),
+)
+
 test_suite(
     name = "contract_tests",
     tests = [
